@@ -558,7 +558,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 63.138046, y: 11.481012}
+  m_Size: {x: 91.446976, y: 11.481012}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -572,7 +572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397311573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.238, y: 0, z: 0}
+  m_LocalPosition: {x: 13.655, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -746,10 +746,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 60.676315, y: 5.7350264}
-      - {x: -2.4436426, y: 5.7501464}
-      - {x: -2.469726, y: -5.732542}
-      - {x: 60.684433, y: -5.712261}
+    - - {x: 68, y: 5.5}
+      - {x: -4, y: 5.5}
+      - {x: -4, y: -5.5}
+      - {x: 68, y: -5.5}
 --- !u!4 &481949203
 Transform:
   m_ObjectHideFlags: 0
