@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 127844684}
   - component: {fileID: 127844683}
   - component: {fileID: 127844685}
+  - component: {fileID: 127844686}
   m_Layer: 0
   m_Name: bathroom
   m_TagString: Door
@@ -411,6 +412,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8, y: 6.3}
   m_EdgeRadius: 0
+--- !u!114 &127844686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127844682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568e965e522145c48b89f724751f8952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 055e678b89d552446be8da5945a0a54e, type: 2}
+  levelindex: Level2
+  item:
+    itemType: 6
+  dialogue: []
 --- !u!1 &254808938 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2114283152912318999, guid: 23fd5d018810d634c98c35aaa35aa457,
@@ -1021,6 +1039,7 @@ GameObject:
   - component: {fileID: 727544249}
   - component: {fileID: 727544248}
   - component: {fileID: 727544250}
+  - component: {fileID: 727544251}
   m_Layer: 0
   m_Name: outside
   m_TagString: Door
@@ -1118,6 +1137,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8, y: 6.3}
   m_EdgeRadius: 0
+--- !u!114 &727544251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727544247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568e965e522145c48b89f724751f8952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 055e678b89d552446be8da5945a0a54e, type: 2}
+  levelindex: Level1
+  item:
+    itemType: 6
+  dialogue: []
 --- !u!224 &742468890 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3800457076036543737, guid: 6869b21a670c0d64d8cd0be868f47c28,

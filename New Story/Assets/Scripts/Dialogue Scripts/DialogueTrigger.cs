@@ -68,6 +68,14 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Action(GameObject collision)
     {
+        if (item.itemType == Item.ItemType.Nothing)
+        {
+            if (gameObject.tag == "Door")
+            {
+                collision.GetComponent<Player>().loader.LoadNextLevel(levelindex);
+                return;
+            }
+        }
         foreach (Item item1 in inventory.GetItemList())
         {
             if (item != null && item1.itemType == item.itemType && gameObject.tag == "Door")
