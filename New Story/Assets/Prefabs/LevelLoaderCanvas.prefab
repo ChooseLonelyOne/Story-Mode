@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 5231871036381080637}
   m_Layer: 5
   m_Name: LevelLoaderCanvas
-  m_TagString: Untagged
+  m_TagString: LevelLoader
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,6 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c67b3626a14e54a8dd3ef46a001bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laoding: {fileID: 2114283152912318999}
+  loading: {fileID: 0}
   transitionTime: 1
   animator: {fileID: 5231871036381080626}

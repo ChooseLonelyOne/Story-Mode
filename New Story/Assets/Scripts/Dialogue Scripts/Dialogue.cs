@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue 
 {
-    public bool repeat;
-    public bool trigger;
     public string name;
 
     public Mans[] mans;

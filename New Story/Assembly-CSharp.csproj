@@ -86,8 +86,10 @@
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Dialogue Scripts\Dialogue.cs" />
+    <Compile Include="Assets\Scripts\Dialogue Scripts\DialogueAutoTrigger.cs" />
     <Compile Include="Assets\Scripts\Dialogue Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue Scripts\DialogueTrigger.cs" />
+    <Compile Include="Assets\Scripts\Dialogue Scripts\DialogueWarning.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\GameManadjer.cs" />
     <Compile Include="Assets\Scripts\Inventory Scripts\Inventory.cs" />
