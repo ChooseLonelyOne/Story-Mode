@@ -18,7 +18,6 @@ public class UIInventory : MonoBehaviour
     private Color selected = new Color(1, 1, 1, 0.8f);
     private int x;
     private TextMeshPro statusTextUI;
-    private GameObject statusText;
 
     public bool IsOpen
     {
@@ -42,7 +41,6 @@ public class UIInventory : MonoBehaviour
     private void Start()
     {
         statusTextUI = player.gameObject.transform.GetChild(2).GetComponent<TextMeshPro>();
-        statusText = player.gameObject.transform.GetChild(0).gameObject;
         SetInventory();
     }
     public void SetPlayer(Player player)
@@ -64,7 +62,6 @@ public class UIInventory : MonoBehaviour
 
         if (isOpen)
         {
-            statusText.SetActive(false);
             if (inventory.GetItemList().Count != 0)
             {
                 NavigationInInventory();
@@ -73,7 +70,6 @@ public class UIInventory : MonoBehaviour
         }
         else
         {
-            statusText.SetActive(true);
             statusTextUI.text = "";
         }
     }
@@ -167,7 +163,8 @@ public class UIInventory : MonoBehaviour
 
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
-            image.sprite = item.GetSprite();
+            image.sprite = item.GetUISprite();
+            image.SetNativeSize();
 
             x++;
             if (x > 8)

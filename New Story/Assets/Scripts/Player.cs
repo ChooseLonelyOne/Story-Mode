@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] Inventory inventory;
     public DialogueManager dialogueManager;
     public LevelLoader loader;
-    public TextMeshPro statusText;
+    public static TextMeshPro statusText;
 
     private SpriteRenderer graphics;
     private Animator animator;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        statusText = transform.GetChild(0).GetComponent<TextMeshPro>();
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         uiInventory.SetPlayer(this);
@@ -32,16 +33,16 @@ public class Player : MonoBehaviour
         float moveX = 0f;
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            moveX = Input.GetAxis("Horizontal");
+            moveX = Input.GetAxisRaw("Horizontal");
 
-        move = new Vector2(moveX, 0).normalized;
+        move = new Vector2(moveX, 0);
 
-        if (playerRigidbody2D.velocity.x < 0)
+        if (moveX < 0 && !isStop)
         {
             graphics.flipX = true;
             animator.SetBool("isMoving", true);
         }
-        else if (playerRigidbody2D.velocity.x > 0.1)
+        else if (moveX > 0 && !isStop)
         {
             graphics.flipX = false;
             animator.SetBool("isMoving", true);
@@ -58,25 +59,25 @@ public class Player : MonoBehaviour
             playerRigidbody2D.velocity = new Vector2(0, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Item")
         {
-            ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
 
-            // touching item
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
-            return;
+                // touching item
+                inventory.AddItem(itemWorld.GetItem());
+                itemWorld.DestroySelf();
+                return;
+            }
         }
-        if (collision.tag == "Door" || collision.tag == "Decor")
-            statusText.text = collision.name;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Door" || collision.tag == "Decor")
-            statusText.text = "";
+        statusText.text = "";
     }
 
     public Vector3 GetPosition()
@@ -87,8 +88,14 @@ public class Player : MonoBehaviour
     public void StopPlayer()
     {
         if (dialogueManager.IsDialogue || uiInventory.IsOpen)
+        {
+            statusText.gameObject.SetActive(false);
             isStop = true;
+        }
         else
+        {
+            statusText.gameObject.SetActive(true);
             isStop = false;
+        }
     }
 }

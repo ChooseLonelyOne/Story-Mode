@@ -34,6 +34,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Player.statusText.text = "loh";
         if (collision.tag != "Player")
             return;
         if (GetDialogueTrigger())

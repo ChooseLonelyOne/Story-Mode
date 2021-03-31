@@ -43,6 +43,12 @@ public class ItemWorld : MonoBehaviour
         return item;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+            Player.statusText.text = GetItem().itemType.ToString();
+    }
+
     public void DestroySelf()
     {
         Destroy(gameObject);
