@@ -6,12 +6,25 @@ using CodeMonkey.Utils;
 
 public class ItemWorld : MonoBehaviour
 {
+    private Item item;
+    private SpriteRenderer spriteRenderer;
+
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
         Transform transform = Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
 
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
         itemWorld.SetItem(item);
+
+        return itemWorld;
+    }
+
+    public static ItemWorld SpawnItemWorld(Vector3 position, Item item, List<Dialogue> dialogue)
+    {
+        Transform transform = Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
+
+        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        itemWorld.SetItem(item, dialogue);
 
         return itemWorld;
     }
@@ -24,9 +37,6 @@ public class ItemWorld : MonoBehaviour
         return itemWorld;
     }
 
-    private Item item;
-    private SpriteRenderer spriteRenderer;
-
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +46,13 @@ public class ItemWorld : MonoBehaviour
     {
         this.item = item;
         spriteRenderer.sprite = item.GetSprite();
+    }
+    public void SetItem(Item item, List<Dialogue> dialogue)
+    {
+        this.item = item;
+        spriteRenderer.sprite = item.GetSprite();
+        DialogueTrigger dialogueTrigger = transform.gameObject.AddComponent<DialogueTrigger>();
+        dialogueTrigger.dialogue = dialogue;
     }
 
     public Item GetItem()

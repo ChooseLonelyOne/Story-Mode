@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] Item[] itemIfNeed;
     [SerializeField] string levelIndex;
+    [SerializeField] string doorName;
     [SerializeField] Inventory inventory;
     private LevelLoader loader;
     private DialogueWarning dialogue;
@@ -17,19 +18,10 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player.statusText.text = "loh";
+        Player.statusText.text = doorName;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Action();
-            return;
-        }
-    }
-
-    private void Action()
+    public void Action()
     {
         bool ok = true;
         foreach (Item key in itemIfNeed)

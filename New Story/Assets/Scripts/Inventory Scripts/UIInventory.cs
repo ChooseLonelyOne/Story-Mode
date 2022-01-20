@@ -8,8 +8,8 @@ using CodeMonkey.Utils;
 
 public class UIInventory : MonoBehaviour
 {
-    private Animator animator;
     [SerializeField] Inventory inventory;
+    private Animator animator;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
     private Player player;
@@ -139,7 +139,7 @@ public class UIInventory : MonoBehaviour
         }
     }
 
-    private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
+    private void Inventory_OnItemListChanged(object sender, EventArgs e)
     {
         RefreshInventoryItem();
     }

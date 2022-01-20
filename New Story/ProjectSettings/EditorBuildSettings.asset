@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level2.unity
     guid: 05a73e155a4f1584f967448e9a764b47
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
+    path: Assets/Scenes/Skinny_Room.unity
     guid: 6e911bb177746a64ba9466ae534dc181
+  - enabled: 1
+    path: Assets/Scenes/Corridor_Room.unity
+    guid: 4a35bc45414655e4fbffc25946fd95ba
+  - enabled: 1
+    path: Assets/Scenes/Hall_Room.unity
+    guid: d1e29bb98a875cd4291ab0228de7f8a0
   m_configObjects: {}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 public class Player : MonoBehaviour
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     public DialogueManager dialogueManager;
     public LevelLoader loader;
     public static TextMeshPro statusText;
+    public static Vector2 lastPosition;
 
     private SpriteRenderer graphics;
     private Animator animator;
@@ -18,9 +20,13 @@ public class Player : MonoBehaviour
     private const float MOVE_SPEED = 6f;
     private Vector3 move;
     private bool isStop = false;
+    private bool isInteractive = false;
+    private GameObject colObject;
 
     private void Awake()
     {
+        transform.position = lastPosition;
+        lastPosition = transform.position;
         statusText = transform.GetChild(0).GetComponent<TextMeshPro>();
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -30,11 +36,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        float moveX = 0f;
+        if(isInteractive && Input.GetKeyDown(KeyCode.E))
+            InteractWithColliders();
 
+        float moveX = 0f;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             moveX = Input.GetAxisRaw("Horizontal");
-
         move = new Vector2(moveX, 0);
 
         if (moveX < 0 && !isStop)
@@ -59,25 +66,32 @@ public class Player : MonoBehaviour
             playerRigidbody2D.velocity = new Vector2(0, 0);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Item")
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
-
-                // touching item
-                inventory.AddItem(itemWorld.GetItem());
-                itemWorld.DestroySelf();
-                return;
-            }
-        }
+        isInteractive = true;
+        colObject = collision.gameObject;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        isInteractive = false;
+        colObject = null;
         statusText.text = "";
+    }
+    private void InteractWithColliders()
+    {
+        DialogueTrigger trigger = colObject.GetComponent<DialogueTrigger>();
+        if (colObject.tag == "Item")
+        {
+            inventory.AddItem(colObject.GetComponent<ItemWorld>().GetItem());
+            Destroy(colObject);
+            if(trigger != null)
+                trigger.TriggerDialogue();
+        }
+        if(colObject.tag == "Door")
+        {
+            colObject.GetComponent<Door>().Action();
+        }
     }
 
     public Vector3 GetPosition()
